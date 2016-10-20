@@ -1,0 +1,24 @@
+prerun - copy over ROOTFS_DIR
+
+--4--  
+/400/
+prerun.sh -> copy over previous rootfs
+	/00-install-packages/
+	debconf -> jackd process priotiry + wolfram-engine eula
+	packages -> list of packages to install
+	packages-nr -> more packages
+	run.sh -> remove vnc private key
+	
+	/01-tweaks/
+	run.sh -> force symbolic link + install scratch rules
+	files/40-scratch.rules -> the scratch rules 	
+
+	/02-extras/
+	run.sh -> python games + pip3 + a bunch of fixes
+	patches/autologin.diff -> lightdm config for autologin
+	patches/series -> containes autologin file name?
+	files/ -> empty folder?
+
+	/03-cleanup/
+	run.sh -> chroot? + apt-get clean
+
