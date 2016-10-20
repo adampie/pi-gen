@@ -1,6 +1,3 @@
-prerun - copy over ROOTFS_DIR
-
---4--  
 /400/
 prerun.sh -> copy over previous rootfs
 	/00-install-packages/
