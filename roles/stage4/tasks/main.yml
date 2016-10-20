@@ -1,0 +1,6 @@
+---
+- hosts: pi-gen
+  tasks:
+  - name: Test
+  - shell: echo "HELLO WORLD"
+
