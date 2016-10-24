@@ -1,0 +1,5 @@
+---
+  - include: install-packages.yml
+  - include: tweaks.yml
+  - include: extras.yml
+  - include: cleanup.yml
