@@ -1,0 +1,4 @@
+---
+# Remove wait.conf
+- name: Remove wait.conf
+  file: path=${ROOTFS_DIR}/etc/systemd/system/dhcpcd.service.d/wait.conf state=absent

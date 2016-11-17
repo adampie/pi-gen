@@ -1,0 +1,55 @@
+---
+# Packages that require confirmation
+- name: Debconf
+  debconf: name='rpi-chromium-mods' question='rpi-chromium-mods/adobe' value='true' vtype='note'
+
+# Install some packages nr?
+- name: Packages-nr
+  action: apt pkg= state=installed
+  with_items:
+  - xserver-xorg-video-fbdev
+  - xserver-xorg
+  - xinit
+  - xserver-xorg-video-fbturbo
+  - epiphany-browser
+  - lxde
+  - lxtask
+  - menu-xdg
+  - gksu
+  - netsurf-gtk
+  - zenity
+  - xdg-utils
+  - gvfs-backends
+  - gvfs-fuse
+  - lightdm
+  - gnome-themes-standard-data
+  - gnome-icon-theme
+
+
+# Install some packages
+- name: Packages
+  action: apt pkg= state=installed
+  with_items:
+  - gstreamer1.0-x
+  - gstreamer1.0-omx
+  - gstreamer1.0-plugins-base
+  - gstreamer1.0-plugins-good
+  - gstreamer1.0-plugins-bad
+  - gstreamer1.0-alsa
+  - gstreamer1.0-libav
+  - xpdf
+  - gtk2-engines
+  - alsa-utils
+  - desktop-base
+  - git-core rpi-update
+  - omxplayer
+  - raspberrypi-artwork
+  - policykit-1
+  - gvfs
+  - rfkill
+  - chromium-browser
+  - rpi-chromium-mods
+
+- name: Update-alternatives
+  shell: update-alternatives --install /usr/bin/x-www-browser \ x-www-browser /usr/bin/chromium-browser 86
+  shell: update-alternatives --install /usr/bin/gnome-www-browser \ gnome-www-browser /usr/bin/chromium-browser 86

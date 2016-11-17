@@ -1,1 +1,4 @@
 ---
+# Import stage 3 modules
+  - include: tasks/install-packages.yml
+  - include: tasks/tweaks.yml
