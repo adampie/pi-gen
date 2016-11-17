@@ -1,0 +1,5 @@
+---
+# Clean up apt-get
+- name: Clean apt
+  apt:
+    autoremove: yes

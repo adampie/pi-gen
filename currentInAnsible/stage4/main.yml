@@ -1,0 +1,6 @@
+---
+# Import stage 4 modules
+  - include: tasks/install-packages.yml
+  - include: tasks/tweaks.yml
+  - include: tasks/extras.yml
+  - include: tasks/cleanup.yml

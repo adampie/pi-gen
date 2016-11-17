@@ -1,0 +1,20 @@
+---
+# This is the current pi-gen in Ansible format, it will not work as
+- hosts: hs.adampie.co.uk
+  tasks:
+    - name: Bootstrap
+      include: stage0/main.yml
+    - name: Minimal
+      include: stage1/main.yml
+    - name: Lite
+      include: stage2/main.yml
+    - name: Desktop
+      include: stage3/main.yml
+    - name: Complete
+      include: stage4/main.yml
+
+  # Become root
+  become: true
+
+  # Ignore errors so it goes through the whole playbook
+  ignore_errors: yes
