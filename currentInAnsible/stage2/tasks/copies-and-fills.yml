@@ -1,0 +1,14 @@
+---
+# Create spindle folder
+- name: Set up spindle folder
+  file: path=${ROOTFS_DIR}/spindle_install state=directory
+
+# Install a package
+- name: Install packages
+  action: apt pkg= state=installed
+  with_items:
+  - raspi-copies-and-fills
+
+# Remove spindle folder
+- name: Remove spindle folder
+  file: path=${ROOTFS_DIR}/spindle_install state=absent

@@ -1,0 +1,76 @@
+---
+# Packages that require confirmation
+- name: Debconf
+  debconf: name='console-setup' question='console-setup/charmap47' value='UTF-8' vtype='select'
+  debconf: name='tzdata' question='tzdata/Areas' value='Etc' vtype='select'
+  debconf: name='tzdata' question='tzdata/Zones/Etc' value='UTC' vtype='select'
+  debconf: name='locales' question='locales/locales_to_be_generated	multiselect' value='en_GB.UTF-8, UTF-8' vtype='multiselect'
+  debconf: name='locales' question='locales/default_environment_locale' value='en_GB.UTF-8' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/altgr' value='The default for the keyboard layout' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/model' value='Generic 105-key (Intl) PC' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/xkb-keymap' value='gb' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/compose' value='No compose key' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/ctrl_alt_bksp' value='true' vtype='select'
+  debconf: name='keyboard-configuration' question='keyboard-configuration/variant' value='English (UK)' vtype='select'
+
+# Install a package nr?
+- name: Packages-nr
+  action: apt pkg= state=installed
+  with_items:
+  - cifs-utils
+
+# Install some packages
+- name: Packages
+  action: apt pkg= state=installed
+  with_items:
+    - ssh
+    - locales
+    - less
+    - fbset
+    - sudo
+    - psmisc
+    - strace
+    - module-init-tools
+    - ed
+    - ncdu
+    - crda
+    - console-setup
+    - keyboard-configuration
+    - debconf-utils
+    - parted
+    - unzip
+    - build-essential
+    - manpages-dev
+    - python
+    - bash-completion
+    - gdb
+    - pkg-config
+    - python-rpi.gpio
+    - v4l-utils
+    - avahi-daemon
+    - lua5.1
+    - luajit
+    - hardlink
+    - ca-certificates
+    - curl
+    - fake-hwclock
+    - ntp
+    - nfs-common
+    - usbutils
+    - libraspberrypi-dev
+    - libraspberrypi-doc
+    - libfreetype6-dev
+    - dosfstools
+    - dphys-swapfile
+    - raspberrypi-sys-mods
+    - pi-bluetooth
+    - apt-listchanges
+    - usb-modeswitch
+
+- name: Extra
+  file: src=files/regenerate_ssh_host_keys dest=${ROOTFS_DIR}/etc/init.d/ state= mode=0755
+  file: src= dest= state= mode=0755
+  file: src= dest= state= mode=0755
+  file: src= dest= state= mode=0755
+  file: src= dest= state= mode=0644
+  file: src= dest= state= mode=0644

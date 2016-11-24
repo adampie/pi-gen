@@ -1,1 +1,6 @@
 ---
+# Import stage 2 modules
+  - include: tasks/copies-and-fills.yml
+  - include: tasks/sys-tweaks.yml
+  - include: tasks/net-tweaks.yml
+  - include: tasks/cleanup.yml
