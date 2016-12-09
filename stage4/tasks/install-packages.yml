@@ -1,10 +1,10 @@
 ---
-# Packages that require confirmation
+# Configure packages before installing
 - name: Debconf
-  debconf: name='jackd2' question='jackd/tweak_rt_limits' value='true' vtype='select'
-  debconf: name='wolfram-engine' question='shared/accepted-wolfram-eula' value='true' vtype='select'
+  debconf: name='jackd2' question='jackd/tweak_rt_limits' value='true' vtype='boolean'
+  debconf: name='wolfram-engine' question='shared/accepted-wolfram-eula' value='true' vtype='boolean'
 
-# Install some packages nr?
+# Install apt packages with --no-install-recommends
 - name: Packages-nr
   action: apt pkg= state=installed
   with_items:
@@ -12,8 +12,9 @@
   - libreoffice-gtk
   - timidity
   - pi-package
+  install_recommends: no
 
-# Install some packages
+# Install apt packages
 - name: Packages
   action: apt pkg= state=installed
   with_items:
@@ -26,7 +27,8 @@
   - python3-pygame
   - python-pygame
   - python-tk
-  - python3 idle3
+  - python3
+  - idle3
   - python3-tk
   - python3-pgzero
   - python-serial
@@ -95,7 +97,8 @@
   - python3-sense-emu
   - sense-emu-tools
   - python-sense-emu-doc
+  - pprompt
 
 # Remove VNC private key
 - name: Extra
-  file: path=${ROOTFS_DIR}/root/.vnc/private.key state=absent
+  file: path={{ROOTFS}}/root/.vnc/private.key state=absent
