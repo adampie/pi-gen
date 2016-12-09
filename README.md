@@ -5,7 +5,8 @@ This started as part of a university final year computer science project.
 
 ## Getting Started
 
-The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-Distro/pi-gen)
+The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-Distro/pi-gen) 
+Latest integration - a9c27d2 from Dec 6, 2016
 
 This will get updated as the project progresses
 
