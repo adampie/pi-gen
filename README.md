@@ -11,9 +11,9 @@ This will get updated as the project progresses
 
 ### Prerequisites
 
-Debian system with the following packages installed:
+Debian system with Ansible installed with the following packages for pi-gen:
 ```
-ansible quilt kpartx realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin
+quilt kpartx realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin
 ```
 
 ### Generating the images
