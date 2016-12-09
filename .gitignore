@@ -116,6 +116,13 @@ fabric.properties
 # *.iml
 # modules.xml
 # .idea/misc.xml 
-# *.ipr
 
 /.idea/
+
+# ORIGINAL PI-GEN
+deploy/*
+work/*
+config
+SKIP
+.pc
+*-pc
