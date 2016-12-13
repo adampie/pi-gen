@@ -11,6 +11,15 @@ Latest integration - a9c27d2 from Dec 6, 2016
 
 *This will get updated as the project progresses*
 
+|Code|Using Ansible?|
+|----|--------------|
+|stage4| Code 100% done, Not implemented yet |
+|stage3| Code 100% done, Not implemented yet |
+|stage2| Code 50% done, Not implemented yet|
+|stage1|Not yet|
+|stage0|Not yet|
+|scripts|Not yet|
+
 ### Prerequisites
 
 Debian system with Ansible installed with the following packages for pi-gen:
