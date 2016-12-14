@@ -1,6 +1,6 @@
 ---
 # This is the current pi-gen in Ansible format, it will not work as
-- hosts: hs.adampie.co.uk
+- hosts: localhost
   tasks:
     - name: Bootstrap
       include: stage0/main.yml

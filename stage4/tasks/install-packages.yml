@@ -1,22 +1,32 @@
 ---
 # Configure packages before installing
-- name: Debconf
-  debconf: name='jackd2' question='jackd/tweak_rt_limits' value='true' vtype='boolean'
-  debconf: name='wolfram-engine' question='shared/accepted-wolfram-eula' value='true' vtype='boolean'
+- name: STAGE 4 - install-packages/debconf
+  debconf:
+    name: "{{ item.name }}"
+    question: "{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype }}"
+  with_items:
+    - { name: 'jackd2', question: 'jackd/tweak_rt_limits', value: 'true', vtype: 'boolean' }
+    - { name: 'wolfram-engine', question: 'shared/accepted-wolfram-eula', value: 'true', vtype: 'boolean' }
 
 # Install apt packages with --no-install-recommends
-- name: Packages-nr
-  action: apt pkg= state=installed
+- name: STAGE 4 - install-packages/packages-nr
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
   with_items:
-  - libreoffice
-  - libreoffice-gtk
-  - timidity
-  - pi-package
-  install_recommends: no
+    - libreoffice
+    - libreoffice-gtk
+    - timidity
+    - pi-package
 
 # Install apt packages
-- name: Packages
-  action: apt pkg= state=installed
+- name: STAGE 4 - install-packages/packages
+  apt:
+    name: "{{ item }}"
+    state: present
   with_items:
   - java-common
   - oracle-java8-jdk
@@ -100,5 +110,8 @@
   - pprompt
 
 # Remove VNC private key
-- name: Extra
-  file: path={{ROOTFS}}/root/.vnc/private.key state=absent
+- name: STAGE 4 - install-packages/extras
+  file:
+    # ADD ${ROOTFS_DIR}/root/ below
+    path: /root/.vnc/private.key
+    state: absent

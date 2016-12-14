@@ -4,7 +4,7 @@
   debconf: name='console-setup' question='console-setup/charmap47' value='UTF-8' vtype='select'
   debconf: name='tzdata' question='tzdata/Areas' value='Etc' vtype='select'
   debconf: name='tzdata' question='tzdata/Zones/Etc' value='UTC' vtype='select'
-  debconf: name='locales' question='locales/locales_to_be_generated	multiselect' value='en_GB.UTF-8, UTF-8' vtype='multiselect'
+  debconf: name='locales' question='locales/locales_to_be_generated' value='en_GB.UTF-8, UTF-8' vtype='multiselect'
   debconf: name='locales' question='locales/default_environment_locale' value='en_GB.UTF-8' vtype='select'
   debconf: name='keyboard-configuration' question='keyboard-configuration/altgr' value='The default for the keyboard layout' vtype='select'
   debconf: name='keyboard-configuration' question='keyboard-configuration/model' value='Generic 105-key (Intl) PC' vtype='select'

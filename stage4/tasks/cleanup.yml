@@ -1,5 +1,5 @@
 ---
-# Clean up apt-get
-- name: Clean apt
+# Remove any packages installed to satisfy dependencies that are no longer required
+- name: STAGE 4 - cleanup/apt
   apt:
     autoremove: yes

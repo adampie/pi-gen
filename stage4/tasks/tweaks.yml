@@ -1,4 +1,9 @@
 ---
-# Create a symbolic link
-- name: Console-autologin
-  file: src=/etc/systemd/system/autologin@.service dest=${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service state=link force=true
+# Create a symbolic link to systemd to enable autologin
+- name: STAGE 4 - tweaks/console-autologin
+  file:
+    src: /etc/systemd/system/autologin@.service
+    # ADD ${ROOTFS_DIR}/etc/ below
+    dest: ${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service
+    state: link
+    force: true
