@@ -13,8 +13,8 @@ Latest integration - a9c27d2 from Dec 6, 2016
 
 |Code|Status|
 |----|--------------|
-|stage4| Code 100% done, Not implemented yet |
-|stage3| Code 100% done, Not implemented yet |
+|stage4| Code done (FIX PYTHON GAMES), Not implemented yet |
+|stage3| Code done, Not implemented yet |
 |stage2| Code 50% done, Not implemented yet|
 |stage1|Not yet|
 |stage0|Not yet|
