@@ -1,5 +1,7 @@
 ---
-# This is the current pi-gen in Ansible format, it will not work as
+# SORT OUT ANSIBLE CHROOT!!!
+
+# TEMP FILE
 - hosts: localhost
   tasks:
     - name: Bootstrap

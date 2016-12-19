@@ -109,9 +109,8 @@
   - python-sense-emu-doc
   - pprompt
 
-# Remove VNC private key
+# Remove root VNC private key
 - name: STAGE 4 - install-packages/extras
   file:
-    # ADD ${ROOTFS_DIR}/root/ below
     path: /root/.vnc/private.key
     state: absent

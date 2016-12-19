@@ -3,7 +3,6 @@
 - name: STAGE 4 - tweaks/console-autologin
   file:
     src: /etc/systemd/system/autologin@.service
-    # ADD ${ROOTFS_DIR}/etc/ below
-    dest: ${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service
+    dest: /etc/systemd/system/getty.target.wants/getty@tty1.service
     state: link
     force: true

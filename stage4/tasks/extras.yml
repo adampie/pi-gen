@@ -1,7 +1,6 @@
 ---
-# This file needs to get cleaned up, it's hard to test as previous stages are not done yet. This is roughly how is file will look like.
-# The way python games is done needs to be done cleaner
-
+# SORT OUT PYTHON GAMES MESS
+# Set up python games
 #- name: Python Games
 #  shell: HASH=`wget https://api.github.com/repos/KenT2/python-games/git/refs/heads/master -qO -| grep \"sha\" | cut -f 2 -d ':' | cut -f 2 -d \"`
 #  shell: if [ -f files/python_games.hash ]; then HASH_LOCAL=`cat files/python_games.hash` fi
@@ -12,39 +11,41 @@
 #  unarchive: src=files/python_games.tar.gz dest=${ROOTFS_DIR}/home/pi/python_games
 #  file: path=${ROOTFS_DIR}/home/pi/python_games state=directory recurse=yes owner=1000 group=1000
 #  file: path=${ROOTFS_DIR}/home/pi/python_games/launcher.sh mode=+x
-#
-#- name: Set up pip
-#  file: src=pip3 dest=${ROOTFS_DIR}/usr/bin/pip-3.2 state=link force=true
-#
-#- name: Set up folders
-#  file: path=${ROOTFS_DIR}/home/pi/Documents state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/Documents/BlueJ\ Projects state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/Documents/Greenfoot\ Projects state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/Documents/Scratch\ Projects state=directory owner=1000 group=1000
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/usr/share/doc/BlueJ/ "${ROOTFS_DIR}/home/pi/Documents/BlueJ Projects"
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/usr/share/doc/Greenfoot/ "${ROOTFS_DIR}/home/pi/Documents/Greenfoot Projects"
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/usr/share/scratch/Projects/Demos/ "${ROOTFS_DIR}/home/pi/Documents/Scratch Projects"
-#
-#- name: Alacarte fixes
-#  file: path=${ROOTFS_DIR}/home/pi/.local state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.local/share state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.local/share/applications state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.local/share/desktop-directories state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/pcmanfm state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE-pi state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/openbox state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/lxsession state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.themes state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/gtk-3.0 state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/.config/lxpanel state=directory owner=1000 group=1000
-#  file: path=${ROOTFS_DIR}/home/pi/Desktop state=directory owner=1000 group=1000
-#  file: src=${ROOTFS_DIR}/etc/xdg/pcmanfm/LXDE-pi/pcmanfm.conf dest=${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE-pi/ state=directory owner=644 group=1000
-#  file: src=${ROOTFS_DIR}/etc/xdg/pcmanfm/LXDE-pi/desktop-items-0.conf dest=${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE-pi/ state=directory owner=644 group=1000
-#  file: src=${ROOTFS_DIR}/etc/xdg/openbox/lxde-pi-rc.xml dest=${ROOTFS_DIR}/home/pi/.config/openbox/ state=directory owner=644 group=1000
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/etc/xdg/lxsession/LXDE-pi ${ROOTFS_DIR}/home/pi/.config/lxsession/
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/usr/share/themes/PiX ${ROOTFS_DIR}/home/pi/.themes/
-#  file: src=${ROOTFS_DIR}/usr/share/raspi-ui-overrides/gtk.css dest=${ROOTFS_DIR}/home/pi/.config/gtk-3.0/ state=directory owner=644 group=1000
-#  file: src=${ROOTFS_DIR}/usr/share/raspi-ui-overrides/Trolltech.conf dest=${ROOTFS_DIR}/home/pi/.config/ state=directory owner=644 group=1000
-#  file: src=${ROOTFS_DIR}/etc/xdg/lxpanel/launchtaskbar.cfg dest=${ROOTFS_DIR}/home/pi/.config/lxpanel/ state=directory owner=644 group=1000
-#  shell: rsync -a --chown=1000:1000 ${ROOTFS_DIR}/etc/xdg/lxpanel/profile/LXDE-pi ${ROOTFS_DIR}/home/pi/.config/lxpanel/
+
+
+# Set up pip3
+- name: STAGE 4 - extras/pip
+  file:
+    scr: pip3
+    dest: /usr/bin/pip-3.2
+    state: link
+    force: true
+
+# Create directories as owner=1000 and group=1000
+- name: STAGE 4 - extras/create_directories
+  file:
+    path: "{{item}}"
+    owner: 1000
+    group: 1000
+    state: directory
+  with_items:
+    - /home/pi/.local
+    - /home/pi/.local/share
+    - /home/pi/.local/share/applications
+    - /home/pi/.local/share/desktop-directories
+    - /home/pi/Documents state=directory
+    - /home/pi/Documents/BlueJ\ Projects
+    - /home/pi/Documents/Greenfoot\ Projects
+    - /home/pi/Documents/Scratch\ Projects
+
+- name: STAGE 4 - extras/rsync
+  synchronize:
+    archive: yes
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: 1000
+    group: 1000
+  with_item:
+    - {src: '/usr/share/doc/BlueJ/', dest: '/home/pi/Documents/BlueJ Projects'}
+    - {src: '/usr/share/doc/Greenfoot/', dest: '/home/pi/Documents/Greenfoot Projects'}
+    - {src: '/usr/share/scratch/Projects/Demos/', dest: '/home/pi/Documents/Scratch Projects'}
