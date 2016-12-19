@@ -1,11 +1,20 @@
 ---
-# Packages that require confirmation
-- name: Debconf
-  debconf: name='rpi-chromium-mods' question='rpi-chromium-mods/adobe' value='true' vtype='note'
+# Configure packages before installing
+- name: STAGE 3 - install-packages/debconf
+  debconf:
+    name: "{{ item.name }}"
+    question: "{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype }}"
+  with_items:
+    - { name: 'rpi-chromium-mods', question: 'rpi-chromium-mods/adobe', value: 'true', vtype: 'note' }
 
-# Install some packages nr?
-- name: Packages-nr
-  action: apt pkg= state=installed
+# Install apt packages with --no-install-recommends
+- name: STAGE 3 - install-packages/packages-nr
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
   with_items:
   - xserver-xorg-video-fbdev
   - xserver-xorg
@@ -25,10 +34,11 @@
   - gnome-themes-standard-data
   - gnome-icon-theme
 
-
-# Install some packages
-- name: Packages
-  action: apt pkg= state=installed
+# Install apt packages
+- name: STAGE 3 - install-packages/packages
+  apt:
+    name: "{{ item }}"
+    state: present
   with_items:
   - gstreamer1.0-x
   - gstreamer1.0-omx
@@ -50,6 +60,13 @@
   - chromium-browser
   - rpi-chromium-mods
 
-- name: Update-alternatives
-  shell: update-alternatives --install /usr/bin/x-www-browser \ x-www-browser /usr/bin/chromium-browser 86
-  shell: update-alternatives --install /usr/bin/gnome-www-browser \ gnome-www-browser /usr/bin/chromium-browser 86
+# Setup update-alternatives for the browser
+- name: STAGE 3 - install-packages/update-alternatives
+  alternatives:
+    name: "{{item.name}}"
+    link: "{{item.link}}"
+    path: "{{item.path}}"
+    priority: "{{item.priority}}"
+  with_items:
+  - {name: '\ x-www-browser', link: '/usr/bin/x-www-browser', path: '/usr/bin/chromium-browser', priority: '86'}
+  - {name: '\ gnome-www-browser', link: '/usr/bin/gnome-www-browser', path: '/usr/bin/chromium-browser', priority: '86'}
