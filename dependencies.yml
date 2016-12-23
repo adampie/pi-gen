@@ -1,3 +1,20 @@
 ---
 - hosts: localhost
   become: true
+  tasks:
+    - name: Install dependencies
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - quilt
+      - kpartx
+      - realpath
+      - qemu-user-static
+      - debootstrap
+      - zerofree
+      - pxz
+      - zip
+      - dosfstools
+      - bsdtar
+      - libcap2-bin
