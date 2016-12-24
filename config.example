@@ -2,5 +2,5 @@
 IMG_NAME='Raspbian'
 
 # This sets an apt proxy, I am using apt-cacher-ng.
-APT_PROXY='http://192.168.1.134:3142'
+# APT_PROXY='http://192.168.1.134:3142'
 
