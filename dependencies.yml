@@ -18,3 +18,4 @@
       - dosfstools
       - bsdtar
       - libcap2-bin
+      - rsync
