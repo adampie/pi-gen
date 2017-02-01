@@ -1,5 +1,7 @@
 # pi-gen with Ansible
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/60be91386cc24f1fb5b15e0ff6eaa72b)](https://www.codacy.com/app/adampie/pi-gen?utm_source=github.com&utm_medium=referral&utm_content=adampie/pi-gen&utm_campaign=badger)
+
 Automating the generation of Raspbian images for the Raspberry Pi using Ansible. 
 This started as part of a university final year computer science project.
 
