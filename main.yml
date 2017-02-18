@@ -4,25 +4,25 @@
 - hosts: localhost
   tasks:
     - name: Check dependencies
-      include: roles/common/tasks/dependencies.yml 
+      include: roles/common/tasks/dependencies.yml
     - name: Bootstrap
-      command: echo "bootstrap"
+      include: library/build_bootstrap.yml
       tags:
         - bootstrap
     - name: Minimal
-      command: echo "minimal"
+      include: library/build_minimal.yml
       tags:
         - minimal
     - name: Lite
-      command: echo "lite"
+      include: library/build_lite.yml
       tags:
         - lite
     - name: Desktop
-      command: echo "desktop"
+      include: library/build_desktop.yml
       tags:
         - desktop
     - name: Complete
-      command: echo "complete"
+      include: library/build_complete.yml
       tags:
         - complete
 

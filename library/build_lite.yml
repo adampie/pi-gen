@@ -1,1 +1,13 @@
 ---
+- name: BUILD STAGE0 - BOOTSTRAP
+  command: echo "temp"
+- name: EXPORT STAGE0 - BOOTSTRAP
+  command: echo "temp"
+- name: BUILD STAGE1 - MINIMAL
+  command: echo "temp"
+- name: EXPORT STAGE1 - MINIMAL
+  command: echo "temp"
+- name: BUILD STAGE2 - LITE
+  command: echo "temp"
+- name: EXPORT STAGE2 - LITE
+  command: echo "temp"

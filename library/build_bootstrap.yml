@@ -1,1 +1,5 @@
 ---
+- name: BUILD STAGE0 - BOOTSTRAP
+  command: echo "temp"
+- name: EXPORT STAGE0 - BOOTSTRAP
+  command: echo "temp"
