@@ -76,7 +76,7 @@ on_chroot() {
 	if ! mount | grep -q "$(realpath "${ROOTFS_DIR}"/dev)"; then
 		mount --bind /dev "${ROOTFS_DIR}/dev"
 	fi
-	
+
 	if ! mount | grep -q "$(realpath "${ROOTFS_DIR}"/dev/pts)"; then
 		mount --bind /dev/pts "${ROOTFS_DIR}/dev/pts"
 	fi
@@ -95,4 +95,3 @@ update_issue() {
 	echo -e "Raspberry Pi reference ${IMG_DATE}\nGenerated using pi-gen, https://github.com/RPi-Distro/pi-gen, ${GIT_HASH}, ${1}" > "${ROOTFS_DIR}/etc/rpi-issue"
 }
 export -f update_issue
-

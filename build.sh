@@ -78,6 +78,13 @@ EOF
 }
 
 
+
+
+
+
+
+
+
 run_stage(){
 	log "Begin ${STAGE_DIR}"
 	STAGE=$(basename ${STAGE_DIR})
@@ -128,10 +135,18 @@ if [ -z "${IMG_NAME}" ]; then
 	exit 1
 fi
 
+
+
+
+
+
+
+
+
 export IMG_DATE=${IMG_DATE:-"$(date -u +%Y-%m-%d)"}
 
 export BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR="${BASE_DIR}/scripts"
+export SCRIPT_DIR="${BASE_DIR}/roles/scripts"
 export WORK_DIR="${BASE_DIR}/work/${IMG_DATE}-${IMG_NAME}"
 export DEPLOY_DIR="${BASE_DIR}/deploy"
 export LOG_FILE="${WORK_DIR}/build.log"
@@ -156,18 +171,23 @@ export QUILT_NO_DIFF_INDEX=1
 export QUILT_NO_DIFF_TIMESTAMPS=1
 export QUILT_REFRESH_ARGS="-p ab"
 
+# log,bootstrap,copy_previous,unmount,unmount_image,update_issue
 source ${SCRIPT_DIR}/common
-
-# Check dependencies using ansible
-ansible-playbook dependencies.yml
 
 mkdir -p ${WORK_DIR}
 log "Begin ${BASE_DIR}"
 
+
+
+# BUILD
 for STAGE_DIR in ${BASE_DIR}/stage*; do
 	run_stage
 done
 
+
+
+
+# EXPORT
 CLEAN=1
 for EXPORT_DIR in ${EXPORT_DIRS}; do
 	STAGE_DIR=${BASE_DIR}/export-image
