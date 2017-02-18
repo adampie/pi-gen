@@ -1,19 +1,30 @@
 ---
-# SORT OUT ANSIBLE CHROOT!!!
-
-# TEMP FILE
+# Add an env file with an easier way to pick what stage you want to build up to.
+# NOTE change command to actually run something and remove ignore errors.
 - hosts: localhost
   tasks:
+    - name: Check dependencies
+      include: roles/common/tasks/dependencies.yml 
     - name: Bootstrap
-      include: stage0/main.yml
+      command: echo "bootstrap"
+      tags:
+        - bootstrap
     - name: Minimal
-      include: stage1/main.yml
+      command: echo "minimal"
+      tags:
+        - minimal
     - name: Lite
-      include: stage2/main.yml
+      command: echo "lite"
+      tags:
+        - lite
     - name: Desktop
-      include: stage3/main.yml
+      command: echo "desktop"
+      tags:
+        - desktop
     - name: Complete
-      include: stage4/main.yml
+      command: echo "complete"
+      tags:
+        - complete
 
   # Become root
   become: true
