@@ -1,17 +1,11 @@
 # pi-gen with Ansible
 
-[![Build Status](https://travis-ci.org/adampie/pi-gen.svg?branch=master)](https://travis-ci.org/adampie/pi-gen)
-
-Automating the generation of Raspbian images for the Raspberry Pi using Ansible. 
+Automating the generation of Raspbian images for the Raspberry Pi using Ansible.
 This started as part of a university final year computer science project.
 
 ## Getting Started
 
 The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-Distro/pi-gen)
-
-Latest integration - a9c27d2 from Dec 6, 2016.
-
-*This will get updated as the project progresses*
 
 |Code|Status|
 |----|--------------|
@@ -21,9 +15,6 @@ Latest integration - a9c27d2 from Dec 6, 2016.
 |stage1|Not yet|
 |stage0|Not yet|
 |scripts|Not yet|
-
-### TeamCity
-*Insert when done*
 
 ### Prerequisites
 #### Vagrant
@@ -37,7 +28,7 @@ Latest integration - a9c27d2 from Dec 6, 2016.
 #### Manual
 Debian system with *Ansible* installed along with the following packages for pi-gen:
 ```
-quilt kpartx realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin
+quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync
 ```
 or run (will be integrated automatically with build in the future)
 ```
@@ -60,7 +51,7 @@ or do
 mv config.example config
 ```
 
-Run the 'build' script as root to start. 
+Run the 'build' script as root to start.
 ```
 sudo ./build.sh
 ```
