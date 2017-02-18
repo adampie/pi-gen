@@ -1,8 +1,0 @@
-quilt
-qemu-arm-static:qemu-user-static
-debootstrap
-kpartx zerofree
-pxz zip
-mkdosfs:dosfstools
-capsh:libcap2-bin
-bsdtar
