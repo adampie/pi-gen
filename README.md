@@ -22,9 +22,6 @@ The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-D
 - VirtualBox
 - pi-gen box - https://atlas.hashicorp.com/adampie/boxes/pi-gen
 
-#### Docker
-- Docker
-
 #### Manual
 Debian system with *Ansible* installed along with the following packages for pi-gen:
 ```
