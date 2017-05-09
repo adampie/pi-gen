@@ -3,6 +3,8 @@
 Automating the generation of Raspbian images for the Raspberry Pi using Ansible.
 This started as part of a university final year computer science project.
 
+This is a PoC of how the original pi-gen could be re-written to make use of DevOps tool such as Ansible.
+
 ## Getting Started
 
 The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-Distro/pi-gen)
