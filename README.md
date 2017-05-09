@@ -7,15 +7,6 @@ This started as part of a university final year computer science project.
 
 The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-Distro/pi-gen)
 
-|Code|Status|
-|----|--------------|
-|stage4| Ansible PoC |
-|stage3| Ansible PoC |
-|stage2| Code 50% done, Not implemented yet|
-|stage1| No |
-|stage0| No |
-|scripts| No |
-
 ### Prerequisites
 #### Vagrant
 - Vagrant
