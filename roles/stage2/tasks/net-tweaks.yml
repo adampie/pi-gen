@@ -1,1 +1,32 @@
 ---
+# Install some packages
+- name: Packages
+  action: apt pkg= state=installed
+  with_items:
+    - wpasupplicant
+    - wireless-tools
+    - firmware-atheros
+    - firmware-brcm80211
+    - firmware-libertas
+    - firmware-ralink
+    - firmware-realtek
+    - raspberrypi-net-mods
+    - dhcpcd5
+
+# Move files and folders
+- name: Extra
+  file:
+    path: ${ROOTFS_DIR}/etc/systemd/system/dhcpcd.service.d
+    state: directory
+  file:
+    src: files/wait.conf
+    dest: ${ROOTFS_DIR}/etc/systemd/system/dhcpcd.service.d/
+    mode: 0644
+
+  file:
+    path: ${ROOTFS_DIR}/etc/wpa_supplicant
+    state: directory
+  file:
+    src: files/wpa_supplicant.conf
+    dest: ${ROOTFS_DIR}/etc/wpa_supplicant/
+    mode: 0600

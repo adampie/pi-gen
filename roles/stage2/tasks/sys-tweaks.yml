@@ -66,11 +66,43 @@
     - pi-bluetooth
     - apt-listchanges
     - usb-modeswitch
+    - apt-transport-https
 
 - name: Extra
-  file: src=files/regenerate_ssh_host_keys dest=${ROOTFS_DIR}/etc/init.d/ state= mode=0755
-  file: src= dest= state= mode=0755
-  file: src= dest= state= mode=0755
-  file: src= dest= state= mode=0755
-  file: src= dest= state= mode=0644
-  file: src= dest= state= mode=0644
+  file: src=files/regenerate_ssh_host_keys.service dest=${ROOTFS_DIR}/lib/systemd/system/ mode=0644
+  file: src=files/apply_noobs_os_config dest=${ROOTFS_DIR}/etc/init.d/ mode=0755
+  file: src=files/resize2fs_once dest=${ROOTFS_DIR}/etc/init.d/ mode=0755
+  file: dest=${ROOTFS_DIR}/etc/systemd/system/rc-local.service.d state=directory
+  file: src=files/ttyoutput.conf dest=${ROOTFS_DIR}/etc/systemd/system/rc-local.service.d/ mode=0644
+  file: src=files/50raspi dest=${ROOTFS_DIR}/etc/apt/apt.conf.d/ mode=0644
+
+# Systemctl
+- name: Services
+  command: systemctl disable hwclock.sh
+  command: systemctl disable nfs-common
+  command: systemctl disable rpcbind
+  command: systemctl disable ssh
+  command: systemctl enable regenerate_ssh_host_keys
+  command: systemctl enable apply_noobs_os_config
+  command: systemctl enable resize2fs_once
+
+# Set up Groups
+- group:
+    name: input state: present system: yes
+    name: spi state: present system: yes
+    name: ic2 state: present system: yes
+    name: gpio state: present system: yes
+
+# Add pi user to the groups
+- user:
+    name: pi
+    groups: adm,dialout,cdrom,audio,users,sudo,video,games,plugdev,input,gpio,spi,i2c,netdev
+
+# Last bit of set up
+- name: Services
+  command: setupcon --force --save-only -v
+  command: usermod --pass='*' root
+
+# Remove ssh key
+- name: Extra
+  file: path: ${ROOTFS_DIR}/etc/ssh/ssh_host_*_key* state=absent

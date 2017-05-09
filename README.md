@@ -9,12 +9,12 @@ The original pi-gen script can be found here - [pi-gen](https://github.com/RPi-D
 
 |Code|Status|
 |----|--------------|
-|stage4| Code done (FIX PYTHON GAMES), Not implemented yet |
-|stage3| Code done, Not implemented yet |
+|stage4| Ansible PoC |
+|stage3| Ansible PoC |
 |stage2| Code 50% done, Not implemented yet|
-|stage1|Not yet|
-|stage0|Not yet|
-|scripts|Not yet|
+|stage1| No |
+|stage0| No |
+|scripts| No |
 
 ### Prerequisites
 #### Vagrant

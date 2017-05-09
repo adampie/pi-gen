@@ -1,1 +1,5 @@
 ---
+#
+- name: Clean up packages
+  apt:
+    autoremove: true
